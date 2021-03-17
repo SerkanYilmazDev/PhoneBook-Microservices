@@ -13,20 +13,34 @@ namespace Reporting.Api.Controllers
     [ApiController]
     public class ReportsController : ControllerBase
     {
-        private readonly IMediator _mediator;
         private readonly ReportDbContext _dbContext;
 
-        public ReportsController(ReportDbContext dbContext,
-            IMediator mediator)
+        public ReportsController(ReportDbContext dbContext)
         {
             _dbContext = dbContext;
-            _mediator = mediator;
         }
 
         [HttpGet("personId/{id}")]
         public async Task<ActionResult> GetReportsByPersonId(Guid id)
         {
             return Ok(await _dbContext.Reports.Where(s => s.PersonId == id).ToListAsync());
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAll()
+        {
+            return Ok(await _dbContext.Reports.Include(r => r.Items).ToListAsync());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetReport(Guid id)
+        {
+            if (id == default)
+                return BadRequest();
+
+            var response = await _dbContext.Reports.Include(p => p.Items).FirstOrDefaultAsync(s => s.Id == id);
+
+            return Ok(response);
         }
     }
 }
