@@ -12,12 +12,12 @@ namespace PhoneBook.Api.Controllers
 {
     [Route("api/persons")]
     [ApiController]
-    public class PersonController : ControllerBase
+    public class PersonsController : ControllerBase
     {
         private readonly PhoneBookDbContext _dbContext;
         private readonly IMediator _mediator;
 
-        public PersonController(PhoneBookDbContext dbContext,
+        public PersonsController(PhoneBookDbContext dbContext,
             IMediator mediator)
         {
             _dbContext = dbContext;

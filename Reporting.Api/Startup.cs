@@ -1,14 +1,23 @@
+using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Reporting.Api.Commands;
+using Reporting.Api.Commands.Handlers;
+using Reporting.Api.Data;
+using Reporting.Api.Events;
+using Shared;
+using Shared.RabbitMq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Http.Headers;
+using System.Reflection;
+
 
 namespace Reporting.Api
 {
@@ -21,14 +30,17 @@ namespace Reporting.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ReportDbContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+            );
 
             services.AddControllers();
+
+            return services.BuildContainer();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -36,14 +48,19 @@ namespace Reporting.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseRabbitMq()
+              .SubscribeCommand<CreatePersonReportsByLocationCommand>()
+              .SubscribeEvent<ReportCreated>();
+
+            DbInitialializer.Initialize(app.ApplicationServices);
+
             app.UseRouting();
-
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGet("", async context => await context.Response.WriteAsync("Report service is up."));
             });
+           
         }
     }
 }
