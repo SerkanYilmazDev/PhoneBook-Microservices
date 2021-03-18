@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using PhoneBook.Api.Commands;
 using PhoneBook.Api.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PhoneBook.Api.Controllers
@@ -126,6 +124,18 @@ namespace PhoneBook.Api.Controllers
                 InformationId = informationId
             };
             return Ok(await _mediator.Send(command));
+        }
+
+        [HttpGet("{personId}/phoneNumbers")]
+        public async Task<IActionResult> GetPhoneNumbersByPersonId(Guid personId)
+        {
+            if (personId == default)
+                return BadRequest();
+
+            var response = await _dbContext.Persons.Include(p => p.Phones).FirstOrDefaultAsync(s => s.Id == personId);
+
+            return Ok(response.Phones);
+
         }
     }
 }

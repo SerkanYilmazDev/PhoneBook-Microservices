@@ -27,22 +27,15 @@ namespace Reporting.Api.Commands.Handlers
 
         public async Task HandleAsync(CreatePersonReportsByLocationCommand command, ICorrelationContext context)
         {
-            var reportItems = new List<ReportItem>() {
-                                            new ReportItem
-                                            {
-                                                Id = Guid.NewGuid(),
-                                                LocationId = command.LocationId,
-                                                ReportId = command.PersonId,
-                                                Name = typeof(CreatePersonReportsByLocationCommand).Name
-                                            }
-            };
-
             var report = new Report
             {
                 Status = ReportStatus.Created,
                 Id = Guid.NewGuid(),
                 PersonId = command.PersonId,
-                Items = reportItems
+                LocationId = command.LocationId,
+                PersonCount = 0,
+                PhoneNumberCount = 0,
+                Name = typeof(CreatePersonReportsByLocationCommand).Name
             };
 
             _dbContext.Reports.Add(report);

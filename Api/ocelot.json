@@ -5,6 +5,9 @@
   "Routes": [
     {
       "UpstreamPathTemplate": "/person-api/{everything}",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

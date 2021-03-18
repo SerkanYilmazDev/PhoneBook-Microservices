@@ -12,6 +12,7 @@ using Reporting.Api.Commands;
 using Reporting.Api.Commands.Handlers;
 using Reporting.Api.Data;
 using Reporting.Api.Events;
+using Reporting.Api.HttpServices;
 using Shared;
 using Shared.RabbitMq;
 using System;
@@ -36,7 +37,21 @@ namespace Reporting.Api
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
             );
 
+            var phoneBookHttpServiceUrl = Configuration.GetValue<string>("HttpServices:PhoneBookHttpServiceUrl");
+            services.AddHttpClient<IPersonHttpService, PersonHttpService>(client =>
+            {
+                client.BaseAddress = new Uri(phoneBookHttpServiceUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            });
+
+            services.AddHttpClient<ILocationHttpService, LocationHttpService>(client =>
+            {
+                client.BaseAddress = new Uri(phoneBookHttpServiceUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            });
             services.AddControllers();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             return services.BuildContainer();
         }
