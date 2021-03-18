@@ -1,0 +1,65 @@
+version: '3.7'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: demo_rabbitmq
+    ports:
+      - "15673:15672"
+      - "5673:5672"
+    networks:
+      - demo
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  postgres:
+    image: postgres:10.6-alpine
+    container_name: demo_postgres
+    ports:
+      - "5492:5432"
+    networks:
+      - demo
+    environment:
+      - POSTGRES_USER=dbadmin 
+      - POSTGRES_PASSWORD=dbadmin
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.1
+    container_name: demo_elastic
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9201:9200"
+      - "9301:9300"
+    networks:
+      - demo
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.6.1
+    container_name: demo_kibana
+    ports:
+      - "5602:5601"
+    networks:
+      - demo
+
+  grafana:
+    image: grafana/grafana
+    container_name: demo_grafana
+    ports:
+      - 3001:3000
+    volumes:
+      - ./_grafana/volume/:/var/lib/grafana
+    networks:
+      - demo
+
+networks:
+  demo:
+    name: demo_network

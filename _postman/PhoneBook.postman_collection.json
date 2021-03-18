@@ -1,0 +1,546 @@
+{
+	"info": {
+		"_postman_id": "ea22f1d2-4813-47fe-86f2-2aa0da34053a",
+		"name": "PhoneBook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Person",
+			"item": [
+				{
+					"name": "0-Create Person",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Serkan2\",\r\n    \"Surname\": \"Yilmaz2\",\r\n    \"CompanyName\": \"Enerjisa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/persons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"persons"
+							]
+						},
+						"description": "0-Create Person"
+					},
+					"response": []
+				},
+				{
+					"name": "1-Get Persons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/api/persons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2-Delete Person",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/persons/a7574681-14d7-4e5b-aeb7-2991d456313a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"persons",
+								"a7574681-14d7-4e5b-aeb7-2991d456313a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3-Create Person Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EmailAdress\": \"serkan.yilmaz1@enerjisa.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/persons/784f0b24-dd29-489c-9ed3-a15596b20713/createPersonEmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"persons",
+								"784f0b24-dd29-489c-9ed3-a15596b20713",
+								"createPersonEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4-Create Person Phone Number",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PhoneNumber\": \"5554994639\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/persons/784f0b24-dd29-489c-9ed3-a15596b20713/createPersonPhoneNumber",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"persons",
+								"784f0b24-dd29-489c-9ed3-a15596b20713",
+								"createPersonPhoneNumber"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5-Create Person Location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Location\": \"Ankara\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/persons/784f0b24-dd29-489c-9ed3-a15596b20713/createPersonLocation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"persons",
+								"784f0b24-dd29-489c-9ed3-a15596b20713",
+								"createPersonLocation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6-Create Person Information",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Info\": \"Developer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/persons/784f0b24-dd29-489c-9ed3-a15596b20713/createPersonInformation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"persons",
+								"784f0b24-dd29-489c-9ed3-a15596b20713",
+								"createPersonInformation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7-Get Person with Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/api/persons/784f0b24-dd29-489c-9ed3-a15596b20713",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"persons",
+								"784f0b24-dd29-489c-9ed3-a15596b20713"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "8-Create Person Location Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PersonId\": \"784f0b24-dd29-489c-9ed3-a15596b20713\",\r\n    \"LocationId\":\"52daeafe-8446-4e29-ade0-b28af9a6c3e6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/report-api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"report-api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9-Get Reports By Person",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5002/api/reports/personId/784f0b24-dd29-489c-9ed3-a15596b20713",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5002",
+							"path": [
+								"api",
+								"reports",
+								"personId",
+								"784f0b24-dd29-489c-9ed3-a15596b20713"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10-Get All Reports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5002/api/reports/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5002",
+							"path": [
+								"api",
+								"reports",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11-Get Report By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5002/api/reports/1712d8de-8b92-409b-8b15-f5b922af74ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5002",
+							"path": [
+								"api",
+								"reports",
+								"1712d8de-8b92-409b-8b15-f5b922af74ec"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gateway",
+			"item": [
+				{
+					"name": "0-Create Person",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Serkan2\",\r\n    \"Surname\": \"Yilmaz2\",\r\n    \"CompanyName\": \"Enerjisa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000person-api/persons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000person-api",
+							"path": [
+								"persons"
+							]
+						},
+						"description": "0-Create Person"
+					},
+					"response": []
+				},
+				{
+					"name": "1-Get Persons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/api/persons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"persons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2-Delete Person",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000person-api/persons/a7574681-14d7-4e5b-aeb7-2991d456313a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000person-api",
+							"path": [
+								"persons",
+								"a7574681-14d7-4e5b-aeb7-2991d456313a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3-Create Person Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"EmailAdress\": \"serkan.yilmaz1@enerjisa.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000person-api/784f0b24-dd29-489c-9ed3-a15596b20713/createPersonEmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000person-api",
+							"path": [
+								"784f0b24-dd29-489c-9ed3-a15596b20713",
+								"createPersonEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4-Create Person Phone Number",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PhoneNumber\": \"5554994639\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000person-api/784f0b24-dd29-489c-9ed3-a15596b20713/createPersonPhoneNumber",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000person-api",
+							"path": [
+								"784f0b24-dd29-489c-9ed3-a15596b20713",
+								"createPersonPhoneNumber"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5-Create Person Location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Location\": \"Ankara\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000person-api/784f0b24-dd29-489c-9ed3-a15596b20713/createPersonLocation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000person-api",
+							"path": [
+								"784f0b24-dd29-489c-9ed3-a15596b20713",
+								"createPersonLocation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6-Create Person Information",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Info\": \"Developer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/person-api/784f0b24-dd29-489c-9ed3-a15596b20713/createPersonInformation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"person-api",
+								"784f0b24-dd29-489c-9ed3-a15596b20713",
+								"createPersonInformation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7-Get Person with Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/person-api/784f0b24-dd29-489c-9ed3-a15596b20713",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"person-api",
+								"784f0b24-dd29-489c-9ed3-a15596b20713"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
