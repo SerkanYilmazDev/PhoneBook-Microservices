@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+
+  api:
+    build: Api/.
+    container_name: api
+    ports:
+      - "5000:80"
+
+  identity:
+    build: Services.Persons/.
+    container_name: person
+    ports:
+      - "5001:80"
+
+  customer:
+    build: Services.Reports/.
+    container_name: report
+    ports:
+      - "5002:80"    
+      
+ networks:
+  default:
+    external:
+      name: demo_network
