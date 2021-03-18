@@ -1,6 +1,5 @@
 ﻿using Shared.Messages;
 using System;
-using System.Collections.Generic;
 
 namespace Reporting.Api.Events
 {

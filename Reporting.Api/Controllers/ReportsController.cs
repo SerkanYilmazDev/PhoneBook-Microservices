@@ -29,7 +29,7 @@ namespace Reporting.Api.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            return Ok(await _dbContext.Reports.Include(r => r.Items).ToListAsync());
+            return Ok(await _dbContext.Reports.ToListAsync());
         }
 
         [HttpGet("{id}")]
@@ -38,7 +38,7 @@ namespace Reporting.Api.Controllers
             if (id == default)
                 return BadRequest();
 
-            var response = await _dbContext.Reports.Include(p => p.Items).FirstOrDefaultAsync(s => s.Id == id);
+            var response = await _dbContext.Reports.FirstOrDefaultAsync(s => s.Id == id);
 
             return Ok(response);
         }

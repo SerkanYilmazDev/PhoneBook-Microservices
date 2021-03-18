@@ -15,9 +15,7 @@ namespace Reporting.Api.Data
         {
             modelBuilder.HasDefaultSchema("report");
             modelBuilder.Entity<Report>().ToTable("reports");
-            modelBuilder.Entity<Report>().HasMany(x => x.Items);
             modelBuilder.Entity<Report>().Property(s => s.Status).HasConversion<string>();
-            modelBuilder.Entity<ReportItem>().ToTable("report_items");
         }
     }
 }
